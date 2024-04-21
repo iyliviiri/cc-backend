@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis UI</title>
+    <style>
+      body{
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        margin: 0;
+        
+        background-image: url('src/assets/background.jpg');
+        background-color: #DDC4A5;
+      }
+      .container{
+        max-width: 600px;
+        margin: auto;
+        
+        background-color: #DDC4A5;
+        
+        padding: 100px;
+        box-shadow: 0 10px 10px rgb(1,1,1,1);
+      }
+      input[type="text"]{
+        width: calc(100% - 100px);
+        padding: 10px;
+        margin-right: center;
+        margin-bottom: center;
+        
+        border: 1px solid #AC4C37;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      button{
+        width: 90px;
+        padding: 10px;
+        background-color: #AC4C37;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+      button:hover{
+        background-color: #4C8F96;
+      }
+      .sentences {
+        width: calc(100% - 100px);
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+
+        border: 1px solid #AC4C37;
+        border-left: 5px solid #AC4C37;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .positive {
+        border-left-color: #26403A;
+      }
+      .negative {
+        border-left-color:orangered;
+      }
+
+      @media screen and (max-width: 600px) {
+      /* for mobile */
+      .container {
+        max-width: 100%;
+        padding: 10px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <h2>Submit a sentence for Sentiment Analysis</h2>
+      <div id="sentences" class="sentences"></div>
+      <input type="text" id="sentenceInput" placeholder="Enter your sentence here...">
+      <button onclick="submitSentence()">Submit</button>
+      
+    </div>
+
+    <script>
+      function submitSentence()
+      {
+        var input = document.getElementById("sentenceInput");
+        var text = input.value.trim();
+        if(text)
+        {
+          var sentimentClass = document.querySelectorAll(".sentence").length % 2 === 0 ? "positive" : "negative";
+          var sentiment = sentimentClass === "positive" ? "Positive" : "Negative";
+
+          var sentenceDiv = document.getElementById("sentences");
+          var newSentence = document.createElement("div");
+          newSentence.classList.add("sentence", sentimentClass);
+          newSentence.textContent = `${text} - Sentiment: ${sentiment}`;
+          sentenceDiv.appendChild(newSentence);
+
+          input.value = "";
+        }
+      }
+
+    </script>
+  </body>
+</html>

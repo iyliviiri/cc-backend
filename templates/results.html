@@ -8,10 +8,6 @@
 <body>
     <h2>Result</h2>
     <p>Input: {{ user_input }}</p>
-    <p>Sentiment: <span id="sentiment" style="color: color"></span></p>
-    <script>
-        document.getElementById("sentiment").innerText = "{{ sentiment }}";
-        document.getElementById("sentiment").style.color = "{{ color }}";
-    </script>
+    <p>Sentiment: {{ sentiment }}</p>
 </body>
 </html>
